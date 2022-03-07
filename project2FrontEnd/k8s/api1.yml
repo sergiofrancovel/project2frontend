@@ -2,18 +2,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontEnd-deployment
+  name: frontend-deployment
   labels:
-    app: frontEndapp
+    app: front-endapp
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: frontEndapp
+      app: front-endapp
   template:
     metadata:
       labels:
-        app: frontEndapp
+        app: front-endapp
     spec:
       containers:
         - image: keoffor/project2-frontend:%TAG%
@@ -37,5 +37,5 @@ spec:
       port: 8080
       targetPort: 8080
   selector:
-    app: frontEndapp
+    app: front-endapp
 
