@@ -1,6 +1,8 @@
 package com.revature.controller;
 
 import com.revature.dto.DoctorDTO;
+import com.revature.dto.EmailAppointmentDTO;
+import com.revature.dto.EmailPrescriptionDTO;
 import com.revature.dto.PatientDTO;
 import com.revature.model.Appointment;
 import com.revature.model.Prescription;
@@ -8,12 +10,14 @@ import com.revature.service.DoctorService;
 import com.revature.service.PatientService;
 import com.revature.service.PrescriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.client.RestTemplate;
 
 @Controller
 public class DoctorController {
@@ -21,6 +25,12 @@ public class DoctorController {
     private final DoctorService doctorService;
     private final PatientService patientService;
     private final PrescriptionService prescriptionService;
+
+    @Autowired
+    RestTemplate restTemplate;
+
+    @Value("${api.config.email-url:http:localhost:4001/email}")
+    private String url;
 
     @Autowired
     public DoctorController(DoctorService doctorService, PatientService patientService,
@@ -73,6 +83,11 @@ public class DoctorController {
                                   @ModelAttribute("patientDTO") PatientDTO patientDTO){
         prescriptionService.prescriptionRequest(prescription, doctorId, patientDTO.getFirstName(),
                 patientDTO.getLastName());
+
+        PatientDTO patient = patientService.getPatientByName(patientDTO.getFirstName(),patientDTO.getLastName());
+        EmailPrescriptionDTO dto = new EmailPrescriptionDTO(patient.getPrimaryDoctor(), patient.getFirstName(), prescription.getMedicineName(),
+                prescription.getDosage(), prescription.getStatus(), patient.getEmail());
+        restTemplate.postForEntity(url, dto, null);
         return "prescription_success";
     }
 
@@ -93,6 +108,11 @@ public class DoctorController {
                                        @ModelAttribute("patientDTO") PatientDTO patientDTO) {
         doctorService.createNewAppointment(appointment, doctorId, patientDTO.getFirstName(),
                 patientDTO.getLastName());
+        PatientDTO patient = patientService.getPatientByName(patientDTO.getFirstName(),patientDTO.getLastName());
+        EmailAppointmentDTO dto = new EmailAppointmentDTO(patient.getEmail(), patient.getPrimaryDoctor(),
+                patient.getFirstName(), patient.getLastName(), appointment.getAppointmentTime(), appointment.getAppointmentDate());
+        restTemplate.postForEntity(url, dto, null);
+
         return "appointment_success";
     }
 }
