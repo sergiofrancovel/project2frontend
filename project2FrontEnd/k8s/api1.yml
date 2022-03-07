@@ -23,7 +23,7 @@ spec:
             - name: EMAIL_URL
               value: http://34.72.121.82:4001/
           ports:
-            - containerPort:
+            - containerPort: 8080
 
 ---
 apiVersion: v1
