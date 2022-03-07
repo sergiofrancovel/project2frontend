@@ -29,8 +29,8 @@ public class DoctorController {
     @Autowired
     RestTemplate restTemplate;
 
-    @Value("${api.config.email-url:http:localhost:4001/email}")
-    private String url;
+//    @Value("${api.config.email-url:http:localhost:4001/email}")
+//    private String url;
 
     @Autowired
     public DoctorController(DoctorService doctorService, PatientService patientService,
@@ -87,7 +87,7 @@ public class DoctorController {
         PatientDTO patient = patientService.getPatientByName(patientDTO.getFirstName(),patientDTO.getLastName());
         EmailPrescriptionDTO dto = new EmailPrescriptionDTO(patient.getPrimaryDoctor(), patient.getFirstName(), prescription.getMedicineName(),
                 prescription.getDosage(), prescription.getStatus(), patient.getEmail());
-        restTemplate.postForEntity(url, dto, null);
+        restTemplate.postForEntity("", dto, null);
         return "prescription_success";
     }
 
@@ -111,7 +111,7 @@ public class DoctorController {
         PatientDTO patient = patientService.getPatientByName(patientDTO.getFirstName(),patientDTO.getLastName());
         EmailAppointmentDTO dto = new EmailAppointmentDTO(patient.getEmail(), patient.getPrimaryDoctor(),
                 patient.getFirstName(), patient.getLastName(), appointment.getAppointmentTime(), appointment.getAppointmentDate());
-        restTemplate.postForEntity(url, dto, null);
+        restTemplate.postForEntity("", dto, null);
 
         return "appointment_success";
     }
