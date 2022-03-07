@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Physician</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body>
+<h1 class="white-header">Contact Physician</h1>
+<form th:action="@{/patient/{id}/contactPhysician(id =${patientDTO.getId()})}" method="post">
+    <h2>Doctor's Name</h2>
+    <div id="doctor-name">
+        <label>
+            <input type="text" placeholder="First Name" th:field="*{doctorDTO.firstName}">
+        </label>
+        <label>
+            <input type="text" placeholder="Last Name" th:field="*{doctorDTO.lastName}">
+        </label>
+    </div>
+    <div id="email-subject">
+        <label>
+            <input type="text" placeholder="Subject" th:field="*{email.subject}">
+        </label>
+    </div>
+    <div>
+        <label>
+            <textarea rows="10" cols="50" placeholder="Body" th:field="*{email.body}"></textarea>
+        </label>
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>
+</body>
+</html>

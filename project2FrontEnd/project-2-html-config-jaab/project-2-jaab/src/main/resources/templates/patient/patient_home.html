@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Home Page</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body>
+    <h1 class="blue-header">What would you like to do?</h1>
+    <div class="container">
+        <div class="options">
+            <div class="card">
+                <div>
+                    <a th:href="@{/patient/{id}/contactPhysician(id=${patientDTO.getId()})}">Contact Your Physician</a>
+                </div>
+            </div>
+            <div class="card">
+                <div>
+                    <a th:href="@{/patient/{id}/updateInformation(id=${patientDTO.getId()})}">Update Your Information</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

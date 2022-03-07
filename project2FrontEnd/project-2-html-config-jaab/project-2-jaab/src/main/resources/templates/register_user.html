@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register New User</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body>
+<h1 class="blue-header">What type of user are you?</h1>
+<div class="container">
+    <div class="options">
+        <div class="card">
+            <a th:href="@{/newPatient}">Patient</a>
+        </div>
+        <div class="card">
+            <div>
+                <a th:href="@{/newDoctor}">Physician</a>
+            </div>
+        </div>
+        <div class="card">
+            <div>
+                <a th:href="@{/newPharmacist}">Pharmacist</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

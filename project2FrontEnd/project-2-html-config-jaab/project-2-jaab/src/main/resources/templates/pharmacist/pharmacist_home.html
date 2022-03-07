@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pharmacist Home</title>
+</head>
+<link th:href="@{/css/styles.css}" rel="stylesheet">
+<body>
+    <form th:action="@{/pharmacy}" method="get">
+    <div id="queue" class="card">
+            <table>
+                <tr>
+                    <th>Queue</th>
+                </tr>
+                <tr th:each="requests: ${unapprovedPrescriptions}">
+                    <td><a th:href="@{/pharmacy/approveRequests/{id}(id=${requests.getId()})}"
+                           th:text="|${requests.getDoctorId()} ${requests.getPatientId()}
+                    ${requests.getMedicineName()} ${requests.getDosage()}|"></a></td>
+                </tr>
+            </table>
+    </div>
+    </form>
+</body>
+</html>

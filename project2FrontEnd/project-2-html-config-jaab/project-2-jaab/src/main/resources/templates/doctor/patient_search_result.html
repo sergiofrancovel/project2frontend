@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Data</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+<body>
+<form class="search-results" method="get">
+    <div id="result-name">
+        <label>First Name:
+            <input type="hidden" th:text="${patientData.getFirstName()}">
+        </label>
+        <label>Last Name:
+            <input type="hidden" th:text="${patientData.getLastName()}">
+        </label>
+    </div>
+    <div id="result-contact">
+        <label>Email:
+            <input type="hidden" th:text="${patientData.getEmail()}">
+        </label>
+        <label>Phone Number:
+            <input type="hidden" th:text="${patientData.getPhoneNumber()}">
+        </label>
+    </div>
+    <div id="result-medical-info">
+        <label>Primary Care Physician:
+            <input type="hidden" th:text="${patientData.getPrimaryDoctor()}">
+        </label>
+        <label>Blood Type:
+            <input type="hidden" th:text="${patientData.getBloodType()}">
+        </label>
+    </div>
+</form>
+</body>
+</html>

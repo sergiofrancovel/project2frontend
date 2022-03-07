@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: Project 2
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+  datasource:
+    username: postgres
+    password: 1234
+    url: jdbc:postgresql://34.136.139.193:5432/hospital
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        format_sql: true
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+server:
+  port: 8080

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Send Request To Pharmacy</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body>
+    <form th:action="@{/doctor/{id}/pharmacyRequest(id =${doctorDTO.getId()})}" method="post">
+        <h1 class="white-header">Pharmacy Request</h1>
+        <h2>Prescription Information</h2>
+        <div id="medication">
+            <label>
+                <input type="text" placeholder="Medication" th:field="*{prescription.medicineName}">
+            </label>
+            <label>
+                <input type="number" placeholder="Dosage Amount" th:field="*{prescription.dosage}">
+            </label>
+        </div>
+        <h2>Patient Information</h2>
+        <div id="patient-name">
+            <label>
+                <input type="text" placeholder="First Name" th:field="*{patientDTO.firstName}">
+            </label>
+            <label>
+                <input type="text" placeholder="Last Name" th:field="*{patientDTO.lastName}">
+            </label>
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</body>
+</html>

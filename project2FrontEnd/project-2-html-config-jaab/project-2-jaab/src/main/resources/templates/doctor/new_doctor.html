@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Doctor</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body>
+<form th:action="@{/newDoctor}" method="post">
+    <div id="doctor-name">
+        <label>
+            <input type="text" placeholder="First Name" minlength="2" maxlength="20" th:field="*{user.firstName}">
+        </label>
+        <label>
+            <input type="text" placeholder="Last Name" minlength="2" maxlength="20" th:field="*{user.lastName}">
+        </label>
+    </div>
+    <div id="doctor-login">
+        <label>
+            <input type="email" placeholder="Email" th:field="*{user.email}">
+        </label>
+        <label>
+            <input type="text" placeholder="Password" maxlength="100" th:field="*{user.password}">
+        </label>
+    </div>
+    <div id="doctor-practice">
+        <label>
+            <input type="text" placeholder="Practice" maxlength="20" th:field="*{doctor.specialty}">
+        </label>
+    </div>
+    <div>
+        <button type="submit">Register</button>
+    </div>
+</form>
+</body>
+</html>

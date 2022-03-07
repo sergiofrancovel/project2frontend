@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule Appointment</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body>
+<form th:action="@{/doctor/{id}/scheduleAppointment(id =${doctorDTO.getId()})}" method="post">
+    <h1 class="white-header">Schedule An Appointment</h1>
+    <h2>Patient Name</h2>
+    <div id="appointment-patient-name">
+        <label>
+            <input type="text" placeholder="First Name" th:field="*{patientDTO.firstName}">
+        </label>
+        <label>
+            <input type="text" placeholder="Last Name" th:field="*{patientDTO.lastName}">
+        </label>
+    </div>
+    <h2>Appointment Date</h2>
+    <div id="appointment-date">
+        <label>
+            <input type="date" th:field="*{appointment.appointmentDate}">
+        </label>
+        <label>
+            <input type="time" th:field="*{appointment.appointmentTime}">
+        </label>
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>
+</body>
+</html>

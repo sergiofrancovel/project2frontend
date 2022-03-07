@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Approve Prescription</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body>
+<form class="search-results" th:action="@{/pharmacy/approveRequests/{id}(id=${prescription.getId()})}"
+      th:method="PATCH">
+    <h1 class="white-header">Request Form</h1>
+    <h2>Doctor's Name</h2>
+    <div id="doctor-name">
+        <label>First Name:
+            <input type="hidden" th:text="${doctorDTO.getFirstName()}">
+        </label>
+        <label>Last Name:
+            <input type="hidden" th:text="${doctorDTO.getLastName()}">
+        </label>
+    </div>
+    <h2>Patient's Name</h2>
+    <div id="patient-name">
+        <label>First Name:
+            <input type="hidden" th:text="${patientDTO.getFirstName()}">
+        </label>
+        <label>Last Name:
+            <input type="hidden" th:text="${patientDTO.getLastName()}">
+        </label>
+    </div>
+    <h2>Requested Medication</h2>
+    <div id="medication-info">
+        <label>Medicine Name:
+            <input type="hidden" th:text="${prescription.getMedicineName()}">
+        </label>
+        <label>Medicine Dosage:
+            <input type="hidden" th:text="${prescription.getDosage()}">
+        </label>
+    </div>
+    <div id="approve-request">
+        <label>
+            <select th:field="*{prescription.status}">
+                <option th:value="'APPROVED'">APPROVED</option>
+                <option th:value="'DENIED'">DENIED</option>
+            </select>
+        </label>
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>
+</body>
+</html>

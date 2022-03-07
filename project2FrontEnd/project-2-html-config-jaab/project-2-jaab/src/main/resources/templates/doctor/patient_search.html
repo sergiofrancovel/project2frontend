@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Search</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body>
+    <form th:action="@{/doctor/{id}/patientSearch/(id=${doctorDTO.getId()})}" method="post">
+        <h1 class="white-header">Enter Patient's Name</h1>
+        <div id="patient-search">
+            <label>
+                <input type="text" placeholder="First Name" th:field="*{patientDTO.firstName}">
+            </label>
+            <label>
+                <input type="text" placeholder="Last Name" th:field="*{patientDTO.lastName}">
+            </label>
+        </div>
+        <div>
+            <button type="submit">Search</button>
+        </div>
+    </form>
+</body>
+</html>

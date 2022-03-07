@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Your Information</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body>
+<form th:action="@{/patient/{id}/updateInformation/(id=${patientDTO.getId()})}" th:method="PATCH">
+    <h1 class="white-header">Update Your Information</h1>
+    <div id="new-email">
+        <label>
+            <input type="text" placeholder="Email" th:field="*{patientData.email}">
+        </label>
+    </div>
+    <div id="new-phone-number">
+        <label>
+            <input type="number" minlength="10" maxlength="10"
+                   placeholder="Phone Number" th:field="*{patientData.phoneNumber}">
+        </label>
+    </div>
+    <div id="new-primary-doctor">
+        <label>
+            <input type="text" placeholder="Primary Doctor" th:field="*{patientData.primaryDoctor}">
+        </label>
+    </div>
+    <div>
+        <button type="submit">Update</button>
+    </div>
+</form>
+</body>
+</html>

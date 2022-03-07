@@ -1,0 +1,89 @@
+package com.revature.service;
+
+import com.revature.dao.DoctorRepository;
+import com.revature.dao.PatientRepository;
+import com.revature.dao.PharmacistRepository;
+import com.revature.dao.UserRepository;
+import com.revature.dto.PatientDTO;
+import com.revature.model.*;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+/**
+ * This class serves as a service for adding users to the user database and their respective databases based on their
+ * role.
+ * @author Joseph Barr
+ */
+@Service
+public class UserService {
+
+    private UserRepository userRepository;
+    private PatientRepository patientRepository;
+    private DoctorRepository doctorRepository;
+    private PharmacistRepository pharmacistRepository;
+
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    @Autowired
+    public void setPatientRepository(PatientRepository patientRepository) {
+        this.patientRepository = patientRepository;
+    }
+
+    @Autowired
+    public void setDoctorRepository(DoctorRepository doctorRepository) {
+        this.doctorRepository = doctorRepository;
+    }
+
+    @Autowired
+    public void setPharmacistRepository(PharmacistRepository pharmacistRepository) {
+        this.pharmacistRepository = pharmacistRepository;
+    }
+
+    /**
+     * Creates a new patient and adds them to the user and patient databases
+     * @param user - The user to be added
+     * @param patient - The patient to be added
+     */
+    public void createPatient(User user, Patient patient){
+        user.setRole(Role.PATIENT);
+        userRepository.save(user);
+        BeanUtils.copyProperties(user, patient);
+        patientRepository.save(patient);
+    }
+
+    /**
+     * Creates a new doctor and adds them to the user and doctor databases
+     * @param user - The user to be added
+     * @param doctor - The doctor to be added
+     */
+    public void createDoctor(User user, Doctor doctor){
+        user.setRole(Role.PHYSICIAN);
+        userRepository.save(user);
+        BeanUtils.copyProperties(user, doctor);
+        doctorRepository.save(doctor);
+    }
+
+    /**
+     * Creates a new pharmacist and adds them to the user and pharmacist databases
+     * @param user - The user to be added
+     * @param pharmacist - The pharmacist to be added
+     */
+    public void createPharmacist(User user, Pharmacist pharmacist){
+        user.setRole(Role.PHARMACIST);
+        userRepository.save(user);
+        BeanUtils.copyProperties(user, pharmacist);
+        pharmacistRepository.save(pharmacist);
+    }
+
+    /**
+     * Updates the user's email in the database
+     * @param email - The new email
+     */
+    public void updateEmail(Integer id, String email){
+        userRepository.updateEmail(id, email);
+    }
+}
