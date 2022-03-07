@@ -65,6 +65,28 @@ pipeline {
             }
           }
         }
+        stage('Wait for SRE/DevOps approval') {
+                when {
+                    branch 'main'
+                }
+                steps {
+                        dir("project2FrontEnd") {
+                    script {
+                        try {
+                            timeout(time: 1, unit: 'MINUTES') {
+                                approved = input message: 'Deploy to production?', ok: 'Continue',
+                                                   parameters: [choice(name: 'approved', choices: 'Yes\nNo', description: 'Deploy build to production')]
+                                if(approved != 'Yes') {
+                                    error('Build did not pass approval')
+                                }
+                            }
+                        } catch(error) {
+                            error('Build failed because timeout was exceeded')
+                            }
+                        }
+                    }
+                }
+            }
            stage('Deploy to GKE') {
                    when {
                        branch 'main'
