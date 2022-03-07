@@ -21,9 +21,9 @@ spec:
           name: frondend-container
           ports:
             - containerPort:
-        env:
-          - name: EMAIL_URL
-            value: http://34.72.121.82:4001/
+          env:
+            - name: EMAIL_URL
+              value: http://34.72.121.82:4001/
 
 ---
 apiVersion: v1
