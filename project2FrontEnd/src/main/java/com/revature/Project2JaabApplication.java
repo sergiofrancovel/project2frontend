@@ -1,13 +1,13 @@
 package com.revature;
 
-import com.revature.model.Patient;
-import com.revature.model.Role;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
+//@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 public class Project2JaabApplication {
 
     public static void main(String[] args) {
@@ -15,11 +15,8 @@ public class Project2JaabApplication {
     }
 
     @Bean
-    public CommandLineRunner runner(){
-        return args -> {
-//            Patient patient = new Patient("John", "Shepard", "commandershepard@systemalliance.org", "NormandySR2",
-//                    "855-264-1147", "AB-", "metal implants", Role.PATIENT);
-        };
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 
 }
