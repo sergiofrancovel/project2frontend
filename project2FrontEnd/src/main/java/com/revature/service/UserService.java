@@ -8,6 +8,7 @@ import com.revature.dto.LoginDTO;
 import com.revature.model.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -43,14 +44,29 @@ public class UserService {
         this.pharmacistRepository = pharmacistRepository;
     }
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    /**
+     * Creates a new user for the user database
+     * @param user - The new user
+     * @param role - The user's role
+     */
+    private void createUser(User user, Role role){
+        user.setRole(role);
+        String encoded = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encoded);
+        userRepository.save(user);
+    }
+
+
     /**
      * Creates a new patient and adds them to the user and patient databases
      * @param user - The user to be added
      * @param patient - The patient to be added
      */
     public void createPatient(User user, Patient patient){
-        user.setRole(Role.PATIENT);
-        userRepository.save(user);
+        createUser(user, Role.PATIENT);
         BeanUtils.copyProperties(user, patient);
         patientRepository.save(patient);
     }
@@ -61,8 +77,7 @@ public class UserService {
      * @param doctor - The doctor to be added
      */
     public void createDoctor(User user, Doctor doctor){
-        user.setRole(Role.PHYSICIAN);
-        userRepository.save(user);
+        createUser(user, Role.PHYSICIAN);
         BeanUtils.copyProperties(user, doctor);
         doctorRepository.save(doctor);
     }
@@ -73,8 +88,7 @@ public class UserService {
      * @param pharmacist - The pharmacist to be added
      */
     public void createPharmacist(User user, Pharmacist pharmacist){
-        user.setRole(Role.PHARMACIST);
-        userRepository.save(user);
+        createUser(user, Role.PHARMACIST);
         BeanUtils.copyProperties(user, pharmacist);
         pharmacistRepository.save(pharmacist);
     }
