@@ -1,6 +1,6 @@
 pipeline {
         environment{
-            registry = 'keoffor/project-2'
+            registry = 'keoffor/project2-frontend'
             dockerHubCreds = 'Docker_hub'
             dockerImage = ''
             deploymentFile = 'k8s/api1.yml'
