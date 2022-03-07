@@ -5,6 +5,9 @@
     <title>Patient Data</title>
     <link th:href="@{/css/styles.css}" rel="stylesheet">
 <body>
+<form class="logout" th:action="@{/logout}" method="post">
+    <button type="submit" class="logout-button">Logout</button>
+</form>
 <form class="search-results" method="get">
     <div id="result-name">
         <label>First Name:

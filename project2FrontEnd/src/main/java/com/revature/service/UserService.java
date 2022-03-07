@@ -4,7 +4,7 @@ import com.revature.dao.DoctorRepository;
 import com.revature.dao.PatientRepository;
 import com.revature.dao.PharmacistRepository;
 import com.revature.dao.UserRepository;
-import com.revature.dto.PatientDTO;
+import com.revature.dto.LoginDTO;
 import com.revature.model.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,6 +77,18 @@ public class UserService {
         userRepository.save(user);
         BeanUtils.copyProperties(user, pharmacist);
         pharmacistRepository.save(pharmacist);
+    }
+
+    /**
+     * Retrieves a user's email for login
+     * @param email - The user's email
+     * @return - LoginDTO
+     */
+    public LoginDTO getUserByUsername(String email){
+        LoginDTO loginDTO = new LoginDTO();
+        User user = userRepository.getUserByEmail(email);
+        BeanUtils.copyProperties(user, loginDTO);
+        return loginDTO;
     }
 
     /**
