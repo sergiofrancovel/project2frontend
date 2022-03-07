@@ -6,9 +6,12 @@
     <link th:href="@{/css/styles.css}" rel="stylesheet">
 </head>
 <body>
+<form class="logout" th:action="@{/logout}" method="post">
+    <button type="submit" class="logout-button">Logout</button>
+</form>
     <form th:action="@{/doctor/{id}/patientSearch/(id=${doctorDTO.getId()})}" method="post">
         <h1 class="white-header">Enter Patient's Name</h1>
-        <div id="patient-search">
+        <div id="patient-search" class="div-margins">
             <label>
                 <input type="text" placeholder="First Name" th:field="*{patientDTO.firstName}">
             </label>

@@ -6,11 +6,14 @@
     <link th:href="@{/css/styles.css}" rel="stylesheet">
 </head>
 <body>
+<form class="logout" th:action="@{/logout}" method="post">
+    <button type="submit" class="logout-button">Logout</button>
+</form>
 <form class="search-results" th:action="@{/pharmacy/approveRequests/{id}(id=${prescription.getId()})}"
       th:method="PATCH">
     <h1 class="white-header">Request Form</h1>
     <h2>Doctor's Name</h2>
-    <div id="doctor-name">
+    <div id="doctor-name" class="div-margins">
         <label>First Name:
             <input type="hidden" th:text="${doctorDTO.getFirstName()}">
         </label>
@@ -19,7 +22,7 @@
         </label>
     </div>
     <h2>Patient's Name</h2>
-    <div id="patient-name">
+    <div id="patient-name" class="div-margins">
         <label>First Name:
             <input type="hidden" th:text="${patientDTO.getFirstName()}">
         </label>
@@ -28,7 +31,7 @@
         </label>
     </div>
     <h2>Requested Medication</h2>
-    <div id="medication-info">
+    <div id="medication-info" class="div-margins">
         <label>Medicine Name:
             <input type="hidden" th:text="${prescription.getMedicineName()}">
         </label>

@@ -6,10 +6,13 @@
     <link th:href="@{/css/styles.css}" rel="stylesheet">
 </head>
 <body>
+<form class="logout" th:action="@{/logout}" method="post">
+    <button type="submit" class="logout-button">Logout</button>
+</form>
     <form th:action="@{/doctor/{id}/pharmacyRequest(id =${doctorDTO.getId()})}" method="post">
         <h1 class="white-header">Pharmacy Request</h1>
         <h2>Prescription Information</h2>
-        <div id="medication">
+        <div id="medication" class="div-margins">
             <label>
                 <input type="text" placeholder="Medication" th:field="*{prescription.medicineName}">
             </label>
@@ -18,7 +21,7 @@
             </label>
         </div>
         <h2>Patient Information</h2>
-        <div id="patient-name">
+        <div id="patient-name" class="div-margins">
             <label>
                 <input type="text" placeholder="First Name" th:field="*{patientDTO.firstName}">
             </label>

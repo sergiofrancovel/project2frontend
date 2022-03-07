@@ -13,6 +13,9 @@ import javax.transaction.Transactional;
 @Transactional
 public interface UserRepository extends JpaRepository<User, Integer> {
 
+    @Query("from User u where u.email = :email")
+    User getUserByEmail(@Param("email") String email);
+
     @Modifying
     @Query("update User u  set u.email = :email where u.id = :userId")
     void updateEmail(@Param("userId") Integer userId, @Param("email") String email);
