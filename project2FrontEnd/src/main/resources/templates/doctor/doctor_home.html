@@ -6,6 +6,9 @@
     <link th:href="@{/css/styles.css}" rel="stylesheet">
 </head>
 <body>
+<form class="logout" th:action="@{/logout}" method="post">
+    <button type="submit" class="logout-button">Logout</button>
+</form>
 <h1 class="blue-header">What would you like to do?</h1>
 <div class="container">
     <div class="options">

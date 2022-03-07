@@ -6,10 +6,13 @@
     <link th:href="@{/css/styles.css}" rel="stylesheet">
 </head>
 <body>
+<form class="logout" th:action="@{/logout}" method="post">
+    <button type="submit" class="logout-button">Logout</button>
+</form>
 <h1 class="white-header">Contact Physician</h1>
 <form th:action="@{/patient/{id}/contactPhysician(id =${patientDTO.getId()})}" method="post">
     <h2>Doctor's Name</h2>
-    <div id="doctor-name">
+    <div id="doctor-name" class="div-margins">
         <label>
             <input type="text" placeholder="First Name" th:field="*{doctorDTO.firstName}">
         </label>
@@ -17,12 +20,12 @@
             <input type="text" placeholder="Last Name" th:field="*{doctorDTO.lastName}">
         </label>
     </div>
-    <div id="email-subject">
+    <div id="email-subject" class="div-margins">
         <label>
             <input type="text" placeholder="Subject" th:field="*{email.subject}">
         </label>
     </div>
-    <div>
+    <div id="email-body" class="div-margins">
         <label>
             <textarea rows="10" cols="50" placeholder="Body" th:field="*{email.body}"></textarea>
         </label>

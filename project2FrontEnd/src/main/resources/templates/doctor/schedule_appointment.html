@@ -6,10 +6,13 @@
     <link th:href="@{/css/styles.css}" rel="stylesheet">
 </head>
 <body>
+<form class="logout" th:action="@{/logout}" method="post">
+    <button type="submit" class="logout-button">Logout</button>
+</form>
 <form th:action="@{/doctor/{id}/scheduleAppointment(id =${doctorDTO.getId()})}" method="post">
     <h1 class="white-header">Schedule An Appointment</h1>
     <h2>Patient Name</h2>
-    <div id="appointment-patient-name">
+    <div id="appointment-patient-name" class="div-margins">
         <label>
             <input type="text" placeholder="First Name" th:field="*{patientDTO.firstName}">
         </label>
@@ -18,7 +21,7 @@
         </label>
     </div>
     <h2>Appointment Date</h2>
-    <div id="appointment-date">
+    <div id="appointment-date" class="div-margins">
         <label>
             <input type="date" th:field="*{appointment.appointmentDate}">
         </label>

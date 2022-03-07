@@ -6,6 +6,9 @@
     <link th:href="@{/css/styles.css}" rel="stylesheet">
 </head>
 <body>
+<form class="logout" th:action="@{/logout}" method="post">
+    <button type="submit" class="logout-button">Logout</button>
+</form>
 <form th:action="@{/patient/{id}/updateInformation/(id=${patientDTO.getId()})}" th:method="PATCH">
     <h1 class="white-header">Update Your Information</h1>
     <div id="new-email">
