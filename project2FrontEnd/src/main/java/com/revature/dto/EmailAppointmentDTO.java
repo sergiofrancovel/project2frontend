@@ -15,7 +15,6 @@ import java.util.Date;
 public class EmailAppointmentDTO {
     private String patientEmail;
     private String doctorfn;
-
     private String patientfn;
     private String patientln;
     private String schedule;
