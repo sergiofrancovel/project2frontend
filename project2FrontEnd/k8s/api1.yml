@@ -19,11 +19,11 @@ spec:
         - image: keoffor/project2-frontend:%TAG%
           imagePullPolicy: Always
           name: frondend-container
-          ports:
-            - containerPort:
           env:
             - name: EMAIL_URL
               value: http://34.72.121.82:4001/
+          ports:
+            - containerPort:
 
 ---
 apiVersion: v1
