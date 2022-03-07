@@ -65,7 +65,7 @@ pipeline {
             }
           }
         }
-        stage('Wait for SRE/DevOps approval') {
+        stage('Wait for approval') {
                 when {
                     branch 'main'
                 }
