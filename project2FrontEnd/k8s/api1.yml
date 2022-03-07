@@ -20,7 +20,10 @@ spec:
           imagePullPolicy: Always
           name: frondend-container
           ports:
-            - containerPort: 8080
+            - containerPort:
+      env:
+        - name: EMAIL_URL
+          value: http://34.72.121.82:4001/
 
 ---
 apiVersion: v1
