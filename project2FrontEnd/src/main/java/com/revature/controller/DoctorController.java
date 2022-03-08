@@ -87,7 +87,7 @@ public class DoctorController {
         PatientDTO patient = patientService.getPatientByName(patientDTO.getFirstName(),patientDTO.getLastName());
         EmailPrescriptionDTO dto = new EmailPrescriptionDTO(patient.getPrimaryDoctor(), patient.getFirstName(), prescription.getMedicineName(),
                 prescription.getDosage(), prescription.getStatus(), patient.getEmail());
-        restTemplate.postForEntity(url +"newprescription", dto, null);
+        restTemplate.postForEntity(url +"/newprescription", dto, null);
         return "prescription_success";
     }
 
@@ -111,7 +111,7 @@ public class DoctorController {
         PatientDTO patient = patientService.getPatientByName(patientDTO.getFirstName(),patientDTO.getLastName());
         EmailAppointmentDTO dto = new EmailAppointmentDTO(patient.getEmail(), patient.getPrimaryDoctor(),
                 patient.getFirstName(), patient.getLastName(), appointment.getAppointmentTime(), appointment.getAppointmentDate());
-        restTemplate.postForEntity(url+ "newappointment", dto, null);
+        restTemplate.postForEntity(url+ "/newappointment", dto, null);
 
         return "appointment_success";
     }
