@@ -40,6 +40,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/patient/*").hasAuthority("PATIENT")
                 .antMatchers("/doctor/*").hasAuthority("PHYSICIAN")
                 .antMatchers("/pharmacy/*").hasAuthority("PHARMACIST")
+                .antMatchers("/actuator/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

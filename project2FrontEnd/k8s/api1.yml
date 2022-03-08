@@ -42,3 +42,15 @@ spec:
   selector:
     app: front-endapp
 
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: java-service-monitor
+spec:
+  selector:
+    matchLabels:
+      app: frontend-deployment
+  endpoints:
+    - port: project-loader
+      path: "/actuator/prometheus"
